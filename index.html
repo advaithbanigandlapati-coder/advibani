@@ -20,8 +20,6 @@
 </script>
 
 <style>
-  /* Single dark look: full-bleed space footage, white type, liquid-glass chrome.
-     Headlines: Bodoni Moda italic (high-contrast editorial serif). Body: Barlow. */
   :root {
     --space: #000000;
     --ink: #ffffff;
@@ -619,13 +617,13 @@
     "nav.cta": "Connect",
 
     "hero.badge": "Now",
-    "hero.badgeText": "Building PyToolCS · Founder, Forcestack",
+    "hero.badgeText": "Building PlanitApp · CPO, Forcestack",
     "hero.title": "Advaith Banigandlapati",
-    "hero.sub": "Student builder from New Jersey. I write robot code for FTC 23786, defend networks with HashBrowns and CyberPatriot, and lead growth and operations at CodePatch STEM.",
+    "hero.sub": "Student builder from New Jersey. I write robot code and make outreach for FTC 23786, defend networks with Hashbrowns, Cyberpatriot, and more, and lead growth and operations at CodePatch STEM.",
     "hero.cta1": "See My Work",
     "hero.cta2": "Connect on LinkedIn",
-    "hero.stat1.big": "Connect 1",
-    "hero.stat1.label": "Ross Division, FTC World Championship",
+    "hero.stat1.big": "Finalist AC",
+    "hero.stat1.label": "NJ State Championships (Qualified for worlds)",
     "hero.stat2.big": "3rd in NJ",
     "hero.stat2.label": "CyberPatriot CP18, semifinalist",
     "hero.partnersChip": "Building with teams across New Jersey and beyond",
@@ -658,22 +656,22 @@
 
     "wins.kicker": "// Wins",
     "wins.title": "Hackathons\n& side projects",
-    "wins.1.big": "NJx Finalist",
-    "wins.1.label": "April 2026",
-    "wins.2.big": "HackPHS",
+    "wins.1.big": "NJx April 2026",
+    "wins.1.label": "Finalist",
+    "wins.2.big": "HackPHS 2026",
     "wins.2.label": "Winner",
-    "wins.3.big": "HackJPS",
+    "wins.3.big": "HackJPS 2026",
     "wins.3.label": "Winner",
     "proj.1.title": "AI Orchestration",
     "proj.1.body": "A system where multiple AI agents coordinate and work together on a task.",
     "proj.1.tag1": "Multi-Agent",
     "proj.1.tag2": "AI",
     "proj.1.tag3": "Orchestration",
-    "proj.2.title": "Lunar Landing",
-    "proj.2.body": "A crash-prevention platform for lunar landings.",
-    "proj.2.tag1": "Space",
-    "proj.2.tag2": "Safety",
-    "proj.2.tag3": "Platform",
+    "proj.2.title": "Research/Sideprojects",
+    "proj.2.body": "Building cool projects off a bucketlist and making research papers. List soon."
+    "proj.2.tag1": "Research",
+    "proj.2.tag2": "Projects",
+    "proj.2.tag3": "Sidequest",
     "proj.github.title": "More on GitHub",
     "proj.github.sub": "github.com/advaithbanigandlapati-coder",
 
@@ -698,7 +696,6 @@
   const CopyCtx = React.createContext({ copy: DEFAULT_COPY });
   const useCopy = () => React.useContext(CopyCtx);
 
-  // One piece of page text, looked up by key.
   function T({ k, as: Tag = "span", className = "", style }) {
     const { copy } = useCopy();
     const val = copy[k] ?? "";
@@ -999,7 +996,6 @@
   window.Wins = Wins;
 </script>
 
-<!-- Contact on the magma image, with the cursor-spotlight reveal -->
 <script type="text/babel" data-presets="react">
   const BG_IMAGE_1 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85";
   const BG_IMAGE_2 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85";
