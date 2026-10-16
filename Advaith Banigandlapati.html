@@ -1,0 +1,1270 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Advaith Banigandlapati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          heading: ["var(--display-family)"],
+          body: ["'Barlow'", "ui-sans-serif", "system-ui", "sans-serif"],
+        },
+        borderRadius: { DEFAULT: "9999px" },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* Single dark look: full-bleed space footage, white type, liquid-glass chrome.
+     Headlines: Bodoni Moda italic (high-contrast editorial serif). Body: Barlow. */
+  :root {
+    --space: #000000;
+    --ink: #ffffff;
+    --star: 255, 255, 255;
+    --display-family: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+    --display-weight: 500;
+    --display-style: italic;
+    --display-transform: none;
+    --display-tracking: -0.025em;
+    color-scheme: dark;
+  }
+  html, body { background: var(--space); color: var(--ink); }
+  body { font-family: 'Barlow', ui-sans-serif, system-ui, sans-serif; overflow-x: hidden; }
+
+  .font-heading {
+    font-weight: var(--display-weight);
+    font-style: var(--display-style);
+    text-transform: var(--display-transform);
+    letter-spacing: var(--display-tracking);
+    overflow-wrap: anywhere;
+  }
+
+  .liquid-glass {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.45) 0%,
+      rgba(255,255,255,0.15) 20%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.15) 80%,
+      rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .liquid-glass-strong {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: none;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass-strong::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.5) 0%,
+      rgba(255,255,255,0.2) 20%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.2) 80%,
+      rgba(255,255,255,0.5) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ---- Vine scrollbar (desktop / mouse only) ---- */
+  :root {
+    --moss: #8fb57a;
+    --leaf-light: #b9d8a0;
+    --leaf-vein: #34502b;
+    --petal: #fff4e8;
+    --ember: #e8702a;
+  }
+  html.vine-on { scrollbar-width: none; }
+  html.vine-on::-webkit-scrollbar { display: none; }
+  html.vine-dragging, html.vine-dragging * { user-select: none; cursor: grabbing !important; }
+
+  #vine-scroll {
+    position: fixed;
+    top: 0;
+    right: calc(4px + env(safe-area-inset-right, 0px));
+    width: 24px;
+    height: 100vh;
+    z-index: 300;
+    opacity: 0.55;
+    cursor: pointer;
+    transition: opacity .35s ease;
+  }
+  #vine-scroll.active, #vine-scroll:hover { opacity: 1; }
+  #vine-scroll svg { display: block; overflow: visible; }
+
+  .vine-base  { fill: none; stroke: rgba(255,255,255,0.14); stroke-width: 1.2; stroke-linecap: round; }
+  .vine-grown { fill: none; stroke: var(--moss); stroke-width: 1.7; stroke-linecap: round; }
+  .leaf-body {
+    fill: var(--moss);
+    transform: scale(0);
+    transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .leaf-body.on { transform: scale(1); }
+  .leaf-body.alt { fill: var(--leaf-light); }
+
+  .vine-thumb { cursor: grab; filter: drop-shadow(0 0 4px rgba(185,216,160,.55)); }
+  .thumb-inner { transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+  #vine-scroll:hover .thumb-inner, html.vine-dragging .thumb-inner { transform: scale(1.25); }
+  .thumb-body  { fill: var(--leaf-light); }
+  .thumb-rib   { fill: none; stroke: var(--leaf-vein); stroke-width: .9; stroke-linecap: round; }
+  .thumb-veins { fill: none; stroke: var(--leaf-vein); stroke-width: .6; stroke-linecap: round; opacity: .75; }
+
+  .flower-inner {
+    transform: scale(0) rotate(-120deg);
+    transition: transform .8s cubic-bezier(.34,1.56,.64,1);
+  }
+  .vine-flower.on .flower-inner { transform: scale(1) rotate(0deg); }
+  .petal { fill: var(--petal); }
+  .flower-core { fill: var(--ember); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .leaf-body, .flower-inner, .thumb-inner { transition: none; }
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: clip; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+
+  /* Quality tiers set by the performance governor */
+  #capabilities, #wins, #contact { contain: paint; }
+  :root[data-perf="medium"] .liquid-glass-strong {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  :root[data-perf="low"] .liquid-glass,
+  :root[data-perf="low"] .liquid-glass-strong {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255,255,255,0.07);
+  }
+  :root[data-perf="low"] .hero-zoom { animation: none; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  /* Ken Burns zoom on the magma image */
+  @keyframes heroZoom { 0%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  .hero-zoom { animation:heroZoom 1.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  @media (prefers-reduced-motion: reduce){ .hero-zoom{ animation:none; } }
+</style>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js" integrity="sha384-kI4i6ajXR7cfM3g1ER7z1sfNye6vd7+R7fglhgO9LF9mZiM523VKhsSp3KpS5EhX" crossorigin="anonymous"></script>
+<script>
+  // framer-motion 11's UMD build already exports window.Motion; keep FramerMotion as a fallback name.
+  window.Motion = window.Motion || window.FramerMotion;
+</script>
+
+<!-- Lenis: eased, buttery scrolling (skipped for people who ask for reduced motion) -->
+<script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" integrity="sha384-eD5ubmuCcvTdCADWuSchJYE7wcj2nzNr0itbrh6w/KJyBiltSZ8w3VFRBSWu5YQ8" crossorigin="anonymous"></script>
+<script>
+  (function () {
+    if (!window.Lenis || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var lenis = new Lenis({ autoRaf: true, lerp: 0.09, smoothWheel: true });
+    window.lenis = lenis;
+    // In-page links (#ventures, #contact…) glide instead of jumping.
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href");
+      if (!id || id.length < 2) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      lenis.scrollTo(el, { duration: 1.4 });
+    });
+  })();
+</script>
+
+<script>
+  /* Performance governor.
+     Watches real frame times and steps the page between three quality tiers:
+       high   – everything on
+       medium – twinkling starfields freeze, heavy glass blur is lightened
+       low    – glass blur off, Ken Burns zoom off
+     It only ever removes decoration; video speed and content never change.
+     Steps down after ~1.5s of sustained lag, steps back up after a long stretch of smooth frames,
+     and waits longer before each retry so it can't flicker between tiers. */
+  (function () {
+    var root = document.documentElement;
+    var TIERS = ["high", "medium", "low"];
+    var tier = 0;
+    var nav = navigator;
+    if ((nav.connection && nav.connection.saveData) ||
+        (nav.deviceMemory && nav.deviceMemory <= 4) ||
+        (nav.hardwareConcurrency && nav.hardwareConcurrency <= 4)) tier = 1;
+
+    function set(t) {
+      tier = Math.max(0, Math.min(2, t));
+      root.setAttribute("data-perf", TIERS[tier]);
+      window.dispatchEvent(new CustomEvent("perfchange", { detail: TIERS[tier] }));
+    }
+    set(tier);
+
+    var last = performance.now();
+    var samples = [];
+    var badSince = 0, goodSince = 0;
+    var settleUntil = last + 3000;     // ignore page-load jank
+    var upgradeWait = 8000;            // doubles after every downgrade
+
+    function reset(now, settle) { samples = []; badSince = 0; goodSince = 0; settleUntil = now + settle; }
+
+    function tick(now) {
+      var dt = now - last; last = now;
+      if (document.visibilityState === "visible" && dt < 500) {
+        samples.push(dt);
+        if (samples.length > 60) samples.shift();
+      }
+      if (now > settleUntil && samples.length >= 30) {
+        var sum = 0; for (var i = 0; i < samples.length; i++) sum += samples[i];
+        var fps = 1000 / (sum / samples.length);
+        if (fps < 45) {
+          goodSince = 0;
+          if (!badSince) badSince = now;
+          if (now - badSince > 1500 && tier < 2) { set(tier + 1); upgradeWait *= 2; reset(now, 2500); }
+        } else if (fps > 56) {
+          badSince = 0;
+          if (!goodSince) goodSince = now;
+          if (now - goodSince > upgradeWait && tier > 0) { set(tier - 1); reset(now, 2500); }
+        } else {
+          badSince = 0; goodSince = 0;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    document.addEventListener("visibilitychange", function () {
+      last = performance.now(); reset(last, 1500);
+    });
+  })();
+</script>
+
+<!-- Icons -->
+<script type="text/babel" data-presets="react">
+  const ArrowUpRight = ({ className = "h-5 w-5" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 17L17 7" />
+      <path d="M7 7h10v10" />
+    </svg>
+  );
+  const Play = ({ className = "h-4 w-4" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <polygon points="6 4 20 12 6 20 6 4" />
+    </svg>
+  );
+  const ClockIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
+    </svg>
+  );
+  const GlobeIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+  const MaterialIcon = ({ d }) => (
+    <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+  const MenuIcon = ({ className = "h-6 w-6" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  );
+  const XIcon = ({ className = "h-6 w-6" }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  );
+  const TrophyIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+      <path d="M4 22h16" />
+      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+      <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+      <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+    </svg>
+  );
+  const ShieldIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+  const AwardIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11" />
+    </svg>
+  );
+  const NetworkIcon = () => (
+    <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="16" y="16" width="6" height="6" rx="1" />
+      <rect x="2" y="16" width="6" height="6" rx="1" />
+      <rect x="9" y="2" width="6" height="6" rx="1" />
+      <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+      <path d="M12 12V8" />
+    </svg>
+  );
+  const MoonIcon = () => (
+    <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+  const CodeIcon = () => (
+    <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m16 18 6-6-6-6" />
+      <path d="m8 6-6 6 6 6" />
+    </svg>
+  );
+  const LINKEDIN = "https://www.linkedin.com/in/advaith-banigandlapati-6537753b6/";
+  const GITHUB = "https://github.com/advaithbanigandlapati-coder";
+  const EMAIL = "advaith.banigandlapati@gmail.com";
+  Object.assign(window, { ArrowUpRight, Play, ClockIcon, GlobeIcon, MaterialIcon, MenuIcon, XIcon, TrophyIcon, ShieldIcon, AwardIcon, NetworkIcon, MoonIcon, CodeIcon, LINKEDIN, GITHUB, EMAIL });
+</script>
+
+<!-- Starfield: sits under each video so the section reads as space while the footage loads (or if it can't). -->
+<script type="text/babel" data-presets="react">
+  function Starfield({ density = 0.00018 }) {
+    const ref = React.useRef(null);
+    React.useEffect(() => {
+      const canvas = ref.current;
+      const ctx = canvas.getContext("2d");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let stars = [];
+      let raf = 0;
+      let w = 0, h = 0, dpr = 1;
+
+      const resize = () => {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.round(w * h * density);
+        stars = Array.from({ length: n }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.1 + 0.2,
+          a: Math.random() * 0.6 + 0.2,
+          tw: Math.random() * Math.PI * 2,
+          v: Math.random() * 0.06 + 0.01,
+        }));
+      };
+
+      const draw = (t) => {
+        ctx.clearRect(0, 0, w, h);
+        for (const s of stars) {
+          const alpha = reduce ? s.a : s.a * (0.65 + 0.35 * Math.sin(t / 900 + s.tw));
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+          if (!reduce) {
+            s.y += s.v;
+            if (s.y > h) { s.y = 0; s.x = Math.random() * w; }
+          }
+        }
+        if (canAnimate()) raf = requestAnimationFrame(draw);
+      };
+
+      // Animate only while on screen and while the device keeps up (see the performance governor);
+      // otherwise hold a still frame.
+      let visible = false;
+      const canAnimate = () => !reduce && visible && document.documentElement.getAttribute("data-perf") === "high";
+      const restart = () => { cancelAnimationFrame(raf); if (canAnimate()) raf = requestAnimationFrame(draw); };
+      const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; restart(); });
+      io.observe(canvas);
+      window.addEventListener("perfchange", restart);
+
+      const onResize = () => { resize(); restart(); if (!canAnimate()) draw(performance.now()); };
+      resize();
+      draw(0);
+      window.addEventListener("resize", onResize);
+      return () => {
+        cancelAnimationFrame(raf);
+        io.disconnect();
+        window.removeEventListener("perfchange", restart);
+        window.removeEventListener("resize", onResize);
+      };
+    }, [density]);
+
+    return <canvas ref={ref} aria-hidden="true" className="absolute inset-0 w-full h-full z-0 pointer-events-none" />;
+  }
+  window.Starfield = Starfield;
+</script>
+
+<!-- FadingVideo: rAF-driven crossfade, manual looping via `ended` -->
+<script type="text/babel" data-presets="react">
+  const FADE_MS = 500;
+  const FADE_OUT_LEAD = 0.55;
+  // 1 = original speed. Lower is slower (0.6 = 60% speed).
+  const VIDEO_RATE = 0.8;
+
+  function FadingVideo({ src, className, style }) {
+    const videoRef = React.useRef(null);
+    const rafRef = React.useRef(0);
+    const fadingOutRef = React.useRef(false);
+    const timeoutRef = React.useRef(0);
+
+    React.useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const fadeTo = (target, duration = FADE_MS) => {
+        cancelAnimationFrame(rafRef.current);
+        const from = parseFloat(video.style.opacity);
+        const start = Number.isFinite(from) ? from : 0;
+        const t0 = performance.now();
+        const step = (now) => {
+          const p = Math.min(1, (now - t0) / duration);
+          video.style.opacity = String(start + (target - start) * p);
+          if (p < 1) rafRef.current = requestAnimationFrame(step);
+        };
+        rafRef.current = requestAnimationFrame(step);
+      };
+
+      // Off-screen videos are paused so they don't compete with the one you're watching.
+      let onScreen = true;
+      // Playback speed: set both values so browsers that reset the rate on load keep it.
+      const applyRate = () => { video.defaultPlaybackRate = VIDEO_RATE; video.playbackRate = VIDEO_RATE; };
+      applyRate();
+      const play = () => { applyRate(); const p = video.play(); if (p && p.catch) p.catch(() => {}); };
+
+      const onLoaded = () => {
+        applyRate();
+        video.style.opacity = "0";
+        if (onScreen) play();
+        fadeTo(1);
+      };
+
+      const onTime = () => {
+        const d = video.duration;
+        // remaining time in real seconds, so the fade-out still lands right at the slower speed
+        const left = (d - video.currentTime) / (video.playbackRate || 1);
+        if (!fadingOutRef.current && left <= FADE_OUT_LEAD && left > 0) {
+          fadingOutRef.current = true;
+          fadeTo(0);
+        }
+      };
+
+      const onEnded = () => {
+        cancelAnimationFrame(rafRef.current);
+        video.style.opacity = "0";
+        timeoutRef.current = setTimeout(() => {
+          video.currentTime = 0;
+          if (onScreen) play();
+          fadingOutRef.current = false;
+          fadeTo(1);
+        }, 100);
+      };
+
+      const io = new IntersectionObserver(([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen) { if (video.readyState >= 2 && video.paused && !video.ended) play(); }
+        else if (!video.paused) video.pause();
+      }, { rootMargin: "150px 0px" });
+      io.observe(video);
+
+      video.addEventListener("loadeddata", onLoaded);
+      video.addEventListener("timeupdate", onTime);
+      video.addEventListener("ended", onEnded);
+      if (video.readyState >= 2) onLoaded();
+
+      return () => {
+        cancelAnimationFrame(rafRef.current);
+        clearTimeout(timeoutRef.current);
+        io.disconnect();
+        video.removeEventListener("loadeddata", onLoaded);
+        video.removeEventListener("timeupdate", onTime);
+        video.removeEventListener("ended", onEnded);
+      };
+    }, [src]);
+
+    return (
+      <video
+        ref={videoRef}
+        src={src}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className={className}
+        style={{ opacity: 0, ...style }}
+      />
+    );
+  }
+  window.FadingVideo = FadingVideo;
+</script>
+
+<!-- BlurText: word-by-word blur-in -->
+<script type="text/babel" data-presets="react">
+  function BlurText({ text, className = "", delay = 100, as: Tag = "p" }) {
+    const { motion } = window.Motion;
+    const ref = React.useRef(null);
+    const [inView, setInView] = React.useState(false);
+
+    React.useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) { setInView(true); io.disconnect(); }
+        },
+        { threshold: 0.1 }
+      );
+      io.observe(el);
+      return () => io.disconnect();
+    }, []);
+
+    const words = text.split(" ");
+    const stepDuration = 0.35;
+    const MotionTag = motion[Tag] ? Tag : "p";
+
+    return (
+      <MotionTag
+        ref={ref}
+        className={className}
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", rowGap: "0.1em" }}
+        aria-label={text}
+      >
+        {words.map((word, i) => (
+          <motion.span
+            key={`${word}-${i}`}
+            aria-hidden="true"
+            style={{ display: "inline-block", marginRight: "0.28em", willChange: "transform, filter, opacity" }}
+            initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
+            animate={
+              inView
+                ? {
+                    filter: ["blur(10px)", "blur(5px)", "blur(0px)"],
+                    opacity: [0, 0.5, 1],
+                    y: [50, -5, 0],
+                  }
+                : { filter: "blur(10px)", opacity: 0, y: 50 }
+            }
+            transition={{
+              duration: stepDuration * 2,
+              times: [0, 0.5, 1],
+              ease: "easeOut",
+              delay: (i * delay) / 1000,
+            }}
+          >
+            {word}
+          </motion.span>
+        ))}
+      </MotionTag>
+    );
+  }
+  window.BlurText = BlurText;
+</script>
+
+<!-- Page copy: every visible word lives here. -->
+<script type="text/babel" data-presets="react">
+  const DEFAULT_COPY = {
+    "nav.home": "Home",
+    "nav.ventures": "Ventures",
+    "nav.wins": "Wins",
+    "nav.contact": "Contact",
+    "nav.cta": "Connect",
+
+    "hero.badge": "Now",
+    "hero.badgeText": "Building PyToolCS · Founder, Forcestack",
+    "hero.title": "Advaith Banigandlapati",
+    "hero.sub": "Student builder from New Jersey. I write robot code for FTC 23786, defend networks with HashBrowns and CyberPatriot, and lead growth and operations at CodePatch STEM.",
+    "hero.cta1": "See My Work",
+    "hero.cta2": "Connect on LinkedIn",
+    "hero.stat1.big": "Connect 1",
+    "hero.stat1.label": "Ross Division, FTC World Championship",
+    "hero.stat2.big": "3rd in NJ",
+    "hero.stat2.label": "CyberPatriot CP18, semifinalist",
+    "hero.partnersChip": "Building with teams across New Jersey and beyond",
+    "hero.partner1": "FTC 23786",
+    "hero.partner2": "CodePatch STEM",
+    "hero.partner3": "Exea Labs",
+    "hero.partner4": "CyberPatriot",
+    "hero.partner5": "Sea Cadets",
+
+    "ventures.kicker": "// Ventures",
+    "ventures.title": "Things I'm\nfounding",
+    "ventures.1.title": "PyToolCS",
+    "ventures.1.body": "Founder of Forcestack. Building PyToolCS, cybersecurity tools that hold up against dynamic attacks.",
+    "ventures.1.tag1": "Cybersecurity",
+    "ventures.1.tag2": "Dynamic Attacks",
+    "ventures.1.tag3": "Startup",
+    "ventures.1.tag4": "Founder",
+    "ventures.2.title": "HashBrowns",
+    "ventures.2.body": "A four-person team of middle and high schoolers in hackathons, CTFs and CyberPatriot. I run system hardening, cyber defense and product.",
+    "ventures.2.tag1": "CTFs",
+    "ventures.2.tag2": "Hackathons",
+    "ventures.2.tag3": "CyberPatriot",
+    "ventures.2.tag4": "Hardening",
+    "ventures.3.title": "CodePatch STEM",
+    "ventures.3.body": "Global Growth & Partnerships Lead and Operations Lead. I run operations across CodePatch STEM and make the call on chapters and expansion.",
+    "ventures.3.tag1": "Global Growth",
+    "ventures.3.tag2": "Partnerships",
+    "ventures.3.tag3": "Operations",
+    "ventures.3.tag4": "Leadership",
+
+    "wins.kicker": "// Wins",
+    "wins.title": "Hackathons\n& side projects",
+    "wins.1.big": "NJx Finalist",
+    "wins.1.label": "April 2026",
+    "wins.2.big": "HackPHS",
+    "wins.2.label": "Winner",
+    "wins.3.big": "HackJPS",
+    "wins.3.label": "Winner",
+    "proj.1.title": "AI Orchestration",
+    "proj.1.body": "A system where multiple AI agents coordinate and work together on a task.",
+    "proj.1.tag1": "Multi-Agent",
+    "proj.1.tag2": "AI",
+    "proj.1.tag3": "Orchestration",
+    "proj.2.title": "Lunar Landing",
+    "proj.2.body": "A crash-prevention platform for lunar landings.",
+    "proj.2.tag1": "Space",
+    "proj.2.tag2": "Safety",
+    "proj.2.tag3": "Platform",
+    "proj.github.title": "More on GitHub",
+    "proj.github.sub": "github.com/advaithbanigandlapati-coder",
+
+    "contact.kicker": "// Contact",
+    "contact.title": "Let's build\nsomething.",
+    "contact.sub": "Reach out about partnerships, sponsorships, robotics, or anything cybersecurity.",
+    "contact.cta": "Connect on LinkedIn",
+    "contact.email": "advaith.banigandlapati@gmail.com",
+    "contact.github": "GitHub",
+    "role.1.title": "Software & Outreach",
+    "role.1.org": "FTC 23786 · MakEMinds",
+    "role.2.title": "Growth & Partnerships · Ops Lead",
+    "role.2.org": "CodePatch STEM",
+    "role.3.title": "New Jersey Ambassador",
+    "role.3.org": "Exea Labs",
+    "role.4.title": "SA/AA",
+    "role.4.org": "U.S. Naval Sea Cadet Corps",
+    "footer.left": "© 2026 Advaith Banigandlapati",
+    "footer.right": "Built in New Jersey",
+  };
+
+  const CopyCtx = React.createContext({ copy: DEFAULT_COPY });
+  const useCopy = () => React.useContext(CopyCtx);
+
+  // One piece of page text, looked up by key.
+  function T({ k, as: Tag = "span", className = "", style }) {
+    const { copy } = useCopy();
+    const val = copy[k] ?? "";
+    if (!val) return null;
+    return <Tag className={className} style={{ whiteSpace: "pre-line", ...style }}>{val}</Tag>;
+  }
+
+  Object.assign(window, { DEFAULT_COPY, CopyCtx, useCopy, T });
+</script>
+
+<!-- Navbar -->
+<script type="text/babel" data-presets="react">
+  function Navbar() {
+    const links = [
+      { k: "nav.home", href: "#home" },
+      { k: "nav.ventures", href: "#capabilities" },
+      { k: "nav.wins", href: "#wins" },
+      { k: "nav.contact", href: "#contact" },
+    ];
+    return (
+      <header
+        className="fixed left-0 right-0 z-[200] px-8 lg:px-16 flex items-center justify-between"
+        style={{ top: "calc(1rem + env(safe-area-inset-top, 0px))" }}
+      >
+        <a
+          href="#home"
+          aria-label="Home"
+          className="liquid-glass rounded-full flex items-center justify-center text-white shrink-0"
+          style={{ width: 48, height: 48 }}
+        >
+          <span className="font-heading text-[26px] leading-none">A</span>
+        </a>
+
+        <nav aria-label="Primary" className="liquid-glass rounded-full hidden md:flex items-center px-1.5 py-1.5">
+          {links.map((l) => (
+            <a
+              key={l.k}
+              href={l.href}
+              className="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors"
+            >
+              <T k={l.k} />
+            </a>
+          ))}
+          <a
+            href={LINKEDIN}
+            target="_blank"
+            rel="noopener"
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-2 text-sm font-medium font-body whitespace-nowrap hover:bg-white/90 transition-colors"
+          >
+            <T k="nav.cta" />
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </nav>
+
+        <div aria-hidden="true" className="shrink-0" style={{ width: 48, height: 48 }} />
+      </header>
+    );
+  }
+  window.Navbar = Navbar;
+</script>
+
+<!-- Hero -->
+<script type="text/babel" data-presets="react">
+  const HERO_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4";
+
+  function Hero() {
+    const { motion } = window.Motion;
+    const { copy } = useCopy();
+    const enter = (delay) => ({
+      initial: { filter: "blur(10px)", opacity: 0, y: 20 },
+      animate: { filter: "blur(0px)", opacity: 1, y: 0 },
+      transition: { duration: 0.8, ease: "easeOut", delay },
+    });
+    const titleClass = "mt-6 text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading text-white leading-[0.85] max-w-3xl justify-center";
+
+    return (
+      <section id="home" className="relative min-h-screen bg-black overflow-hidden flex flex-col">
+        <Starfield />
+        <FadingVideo
+          src={HERO_VIDEO}
+          className="absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
+          style={{ width: "120%", height: "120%", maxWidth: "none" }}
+        />
+
+        <div className="relative z-10 flex flex-col flex-1 min-h-screen">
+          <Navbar />
+
+          <div className="flex-1 flex flex-col items-center justify-center text-center pt-24 px-4">
+            <motion.div {...enter(0.4)} className="liquid-glass rounded-full inline-flex items-center gap-2 p-1 max-w-full">
+              <T k="hero.badge" className="rounded-full bg-white text-black px-3 py-1 text-xs font-semibold font-body shrink-0" />
+              <T k="hero.badgeText" className="text-sm text-white/90 font-body pr-3 text-left" />
+            </motion.div>
+
+            <BlurText as="h1" text={copy["hero.title"]} className={titleClass} />
+
+            <motion.p {...enter(0.8)} className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight">
+              <T k="hero.sub" />
+            </motion.p>
+
+            <motion.div {...enter(1.1)} className="flex flex-wrap items-center justify-center gap-6 mt-6">
+              <a
+                href="#capabilities"
+                className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white font-body inline-flex items-center gap-2"
+              >
+                <T k="hero.cta1" />
+                <ArrowUpRight className="h-5 w-5" />
+              </a>
+              <a href={LINKEDIN} target="_blank" rel="noopener" className="text-sm font-medium text-white font-body inline-flex items-center gap-2 hover:text-white/80 transition-colors">
+                <T k="hero.cta2" />
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </motion.div>
+
+            <motion.div {...enter(1.3)} className="flex flex-wrap items-stretch justify-center gap-4 mt-8">
+              {[["hero.stat1", TrophyIcon], ["hero.stat2", ShieldIcon]].map(([base, Icon]) => (
+                <div key={base} className="liquid-glass p-5 w-[220px] max-w-full rounded-[1.25rem] text-left flex flex-col justify-between gap-6 text-white">
+                  <Icon />
+                  <div>
+                    <T k={base + ".big"} as="div" className="font-heading text-white text-4xl leading-none" />
+                    <T k={base + ".label"} as="div" className="text-xs text-white font-body font-light mt-2" />
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          <motion.div {...enter(1.4)} className="flex flex-col items-center gap-4 pb-8 pt-12 px-4">
+            <T k="hero.partnersChip" as="div" className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body text-center" />
+            <ul className="flex flex-wrap justify-center gap-x-12 md:gap-x-16 gap-y-2" aria-label="Teams">
+              {[1, 2, 3, 4, 5].map((n) => (
+                copy["hero.partner" + n] ? (
+                  <li key={n} className="font-heading text-white text-2xl md:text-3xl"><T k={"hero.partner" + n} /></li>
+                ) : null
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+  window.Hero = Hero;
+</script>
+
+<!-- Ventures -->
+<script type="text/babel" data-presets="react">
+  const CAP_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4";
+
+  const VENTURE_ICONS = [
+    "M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4Z",
+    "M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2Zm0 14H4V8h16v10Zm-2-1h-6v-2h6v2ZM7.5 17l-1.41-1.41L8.67 13l-2.59-2.59L7.5 9l4 4-4 4Z",
+    "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93Zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39Z",
+  ];
+
+  function Tags({ base, count, label }) {
+    const { copy } = useCopy();
+    const keys = Array.from({ length: count }, (_, i) => base + ".tag" + (i + 1)).filter((k) => copy[k]);
+    return (
+      <ul className="flex flex-wrap justify-end gap-1.5 max-w-[70%]" aria-label={label}>
+        {keys.map((k) => (
+          <li key={k} className="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap"><T k={k} /></li>
+        ))}
+      </ul>
+    );
+  }
+  window.Tags = Tags;
+
+  function Capabilities() {
+    const { motion } = window.Motion;
+    return (
+      <section id="capabilities" className="relative min-h-screen bg-black overflow-hidden">
+        <Starfield />
+        <FadingVideo src={CAP_VIDEO} className="absolute inset-0 w-full h-full object-cover z-0" />
+
+        <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
+          <div className="mb-auto">
+            <T k="ventures.kicker" as="p" className="text-sm font-body text-white/80 mb-6" />
+            <h2 className="font-heading text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9]">
+              <T k="ventures.title" />
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+            {[1, 2, 3].map((n, i) => (
+              <motion.article
+                key={n}
+                initial={{ filter: "blur(10px)", opacity: 0, y: 20 }}
+                whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 * i }}
+                className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="liquid-glass rounded-[0.75rem] flex items-center justify-center shrink-0" style={{ width: 44, height: 44 }}>
+                    <MaterialIcon d={VENTURE_ICONS[i]} />
+                  </div>
+                  <Tags base={"ventures." + n} count={4} label="Focus areas" />
+                </div>
+                <div className="flex-1" />
+                <div className="mt-6">
+                  <h3 className="font-heading text-white text-3xl md:text-4xl leading-none"><T k={"ventures." + n + ".title"} /></h3>
+                  <T k={"ventures." + n + ".body"} as="p" className="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]" />
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  window.Capabilities = Capabilities;
+</script>
+
+<!-- Wins: hackathons + side projects -->
+<script type="text/babel" data-presets="react">
+  const WINS_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260701_083907_581a119a-89b7-4c9f-a6ef-560625e0086f.mp4";
+  const WIN_ICONS = [AwardIcon, TrophyIcon, TrophyIcon];
+  const PROJECT_ICONS = [NetworkIcon, MoonIcon];
+
+  function Wins() {
+    const { motion } = window.Motion;
+    const rise = (i) => ({
+      initial: { filter: "blur(10px)", opacity: 0, y: 20 },
+      whileInView: { filter: "blur(0px)", opacity: 1, y: 0 },
+      viewport: { once: true, amount: 0.2 },
+      transition: { duration: 0.8, ease: "easeOut", delay: 0.15 * i },
+    });
+    return (
+      <section id="wins" className="relative min-h-screen bg-black overflow-hidden">
+        <Starfield />
+        <FadingVideo src={WINS_VIDEO} className="absolute inset-0 w-full h-full object-cover z-0" />
+
+        <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-16 flex flex-col min-h-screen">
+          <T k="wins.kicker" as="p" className="text-sm font-body text-white/80 mb-6" />
+          <h2 className="font-heading text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9]">
+            <T k="wins.title" />
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-14">
+            {[1, 2, 3].map((n, i) => {
+              const Icon = WIN_ICONS[i];
+              return (
+                <motion.div key={n} {...rise(i)} className="liquid-glass p-6 rounded-[1.25rem] flex flex-col justify-between gap-10 text-white min-h-[200px]">
+                  <Icon />
+                  <div>
+                    <T k={"wins." + n + ".big"} as="div" className="font-heading text-white text-5xl leading-none" />
+                    <T k={"wins." + n + ".label"} as="div" className="text-sm text-white font-body font-light mt-2" />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            {[1, 2].map((n, i) => {
+              const Icon = PROJECT_ICONS[i];
+              return (
+                <motion.article key={n} {...rise(i)} className="liquid-glass rounded-[1.25rem] p-6 min-h-[260px] flex flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="liquid-glass rounded-[0.75rem] flex items-center justify-center shrink-0" style={{ width: 44, height: 44 }}>
+                      <Icon />
+                    </div>
+                    <Tags base={"proj." + n} count={3} label="Tags" />
+                  </div>
+                  <div className="flex-1" />
+                  <div className="mt-6">
+                    <h3 className="font-heading text-white text-3xl md:text-4xl leading-none"><T k={"proj." + n + ".title"} /></h3>
+                    <T k={"proj." + n + ".body"} as="p" className="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]" />
+                  </div>
+                </motion.article>
+              );
+            })}
+            <motion.a
+              {...rise(2)}
+              href={GITHUB}
+              target="_blank"
+              rel="noopener"
+              className="liquid-glass rounded-[1.25rem] p-6 min-h-[260px] flex flex-col group"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="liquid-glass rounded-[0.75rem] flex items-center justify-center shrink-0" style={{ width: 44, height: 44 }}>
+                  <CodeIcon />
+                </div>
+                <span className="text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <ArrowUpRight className="h-6 w-6" />
+                </span>
+              </div>
+              <div className="flex-1" />
+              <div className="mt-6">
+                <h3 className="font-heading text-white text-3xl md:text-4xl leading-none"><T k="proj.github.title" /></h3>
+                <T k="proj.github.sub" as="p" className="mt-3 text-sm text-white/90 font-body font-light leading-snug break-all" />
+              </div>
+            </motion.a>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  window.Wins = Wins;
+</script>
+
+<!-- Contact on the magma image, with the cursor-spotlight reveal -->
+<script type="text/babel" data-presets="react">
+  const BG_IMAGE_1 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_195923_b0ba8ace-1d1d-4f2c-9a28-1ab84b330680.png&w=1280&q=85";
+  const BG_IMAGE_2 = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_201152_bba90a12-bf12-459f-91f0-51f237dbaf3b.png&w=1280&q=85";
+  const SPOTLIGHT_R = 260;
+
+  function Contact() {
+    const { copy } = useCopy();
+    const sectionRef = React.useRef(null);
+    const revealRef = React.useRef(null);
+
+    // Smoothed cursor → soft circular mask. Written straight to the element, no React re-render per frame.
+    React.useEffect(() => {
+      const section = sectionRef.current;
+      const reveal = revealRef.current;
+      const mouse = { x: -999, y: -999 };
+      const smooth = { x: -999, y: -999 };
+      let raf = 0;
+      const setMask = (x, y) => {
+        const m = `radial-gradient(circle ${SPOTLIGHT_R}px at ${x.toFixed(1)}px ${y.toFixed(1)}px, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.12) 88%, rgba(255,255,255,0) 100%)`;
+        reveal.style.maskImage = m;
+        reveal.style.webkitMaskImage = m;
+      };
+      setMask(-999, -999);
+      const toLocal = (cx, cy) => {
+        const r = section.getBoundingClientRect();
+        mouse.x = cx - r.left; mouse.y = cy - r.top;
+      };
+      const onMove = (e) => toLocal(e.clientX, e.clientY);
+      const onTouch = (e) => { const t = e.touches[0]; if (t) toLocal(t.clientX, t.clientY); };
+      let lastX = -99999, lastY = -99999;
+      const loop = () => {
+        if (smooth.x === -999 && mouse.x !== -999) { smooth.x = mouse.x; smooth.y = mouse.y; }
+        smooth.x += (mouse.x - smooth.x) * 0.1;
+        smooth.y += (mouse.y - smooth.y) * 0.1;
+        const r = section.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight && (Math.abs(smooth.x - lastX) > 0.3 || Math.abs(smooth.y - lastY) > 0.3)) {
+          setMask(smooth.x, smooth.y);
+          lastX = smooth.x; lastY = smooth.y;
+        }
+        raf = requestAnimationFrame(loop);
+      };
+      window.addEventListener("mousemove", onMove);
+      section.addEventListener("touchstart", onTouch, { passive: true });
+      section.addEventListener("touchmove", onTouch, { passive: true });
+      raf = requestAnimationFrame(loop);
+      return () => {
+        cancelAnimationFrame(raf);
+        window.removeEventListener("mousemove", onMove);
+        section.removeEventListener("touchstart", onTouch);
+        section.removeEventListener("touchmove", onTouch);
+      };
+    }, []);
+
+    return (
+      <section id="contact" ref={sectionRef} className="relative w-full overflow-hidden bg-black" style={{ minHeight: "100dvh" }}>
+        <div className="hero-zoom absolute inset-0 bg-center bg-cover bg-no-repeat z-10" style={{ backgroundImage: `url("${BG_IMAGE_1}")` }} />
+        <div ref={revealRef} className="absolute inset-0 bg-center bg-cover bg-no-repeat z-30 pointer-events-none" style={{ backgroundImage: `url("${BG_IMAGE_2}")` }} />
+
+        <div className="relative z-50 px-8 md:px-16 lg:px-20 pt-28 pb-10 flex flex-col justify-between gap-16" style={{ minHeight: "100dvh" }}>
+          <div>
+            <T k="contact.kicker" as="p" className="text-sm font-body text-white/80 mb-6" />
+            <h2 className="font-heading text-white text-6xl md:text-8xl lg:text-[8rem] leading-[0.88]">
+              <T k="contact.title" />
+            </h2>
+            <T k="contact.sub" as="p" className="mt-6 text-sm md:text-base text-white/90 font-body font-light leading-snug max-w-[44ch]" />
+            <div className="flex flex-wrap items-center gap-6 mt-8">
+              <a
+                href={LINKEDIN}
+                target="_blank"
+                rel="noopener"
+                className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white font-body inline-flex items-center gap-2"
+              >
+                <T k="contact.cta" />
+                <ArrowUpRight className="h-5 w-5" />
+              </a>
+              <a href={"mailto:" + (copy["contact.email"] || EMAIL)} className="text-sm font-medium text-white font-body select-all break-all hover:text-white/80 transition-colors">
+                <T k="contact.email" />
+              </a>
+              <a href={GITHUB} target="_blank" rel="noopener" className="text-sm font-medium text-white font-body inline-flex items-center gap-2 hover:text-white/80 transition-colors">
+                <T k="contact.github" />
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" aria-label="Current roles">
+              {[1, 2, 3, 4].map((n) => (
+                <li key={n} className="liquid-glass-strong rounded-[1.25rem] p-5 text-white">
+                  <T k={"role." + n + ".title"} as="div" className="font-heading text-2xl leading-tight" />
+                  <T k={"role." + n + ".org"} as="div" className="text-xs font-body font-light text-white/90 mt-2" />
+                </li>
+              ))}
+            </ul>
+            <footer className="mt-10 pt-6 border-t border-white/20 flex flex-wrap justify-between gap-3 text-xs font-body text-white/80">
+              <T k="footer.left" />
+              <T k="footer.right" />
+            </footer>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  window.Contact = Contact;
+</script>
+
+<!-- App -->
+<script type="text/babel" data-presets="react">
+  function App() {
+    const { MotionConfig } = window.Motion;
+    return (
+      <CopyCtx.Provider value={{ copy: DEFAULT_COPY }}>
+        <MotionConfig reducedMotion="user">
+          <main className="bg-black text-white font-body">
+            <Hero />
+            <Capabilities />
+            <Wins />
+            <Contact />
+          </main>
+        </MotionConfig>
+      </CopyCtx.Provider>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+
+<!-- Vine scrollbar: grows with scroll, leaves sprout as you pass them, leaf thumb drags, flower blooms at the end -->
+<script>
+  (function () {
+    if (!window.matchMedia("(pointer: fine)").matches) return; // phones keep their native overlay scrollbar
+    var NS = "http://www.w3.org/2000/svg";
+    var docEl = document.documentElement;
+    docEl.classList.add("vine-on");
+
+    var wrap = document.createElement("div");
+    wrap.id = "vine-scroll";
+    wrap.setAttribute("aria-hidden", "true");
+    var svg = document.createElementNS(NS, "svg");
+    wrap.appendChild(svg);
+    document.body.appendChild(wrap);
+
+    var W = 24, X = 12, AMP = 3.2, WAVE = 140, PAD = 18;
+    var H = 0, len = 0, leaves = [], grown, thumb, flower;
+    var progress = 0, lastY = window.scrollY, vel = 0, sway = 0, raf = 0, idleT = 0, dragging = false;
+
+    function el(tag, attrs, parent) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      (parent || svg).appendChild(n);
+      return n;
+    }
+    function xAt(y) { return X + AMP * Math.sin((y / WAVE) * Math.PI * 2); }
+    function slopeDeg(y) { return Math.atan(AMP * (2 * Math.PI / WAVE) * Math.cos((y / WAVE) * Math.PI * 2)) * 180 / Math.PI; }
+    function maxScroll() { return Math.max(1, docEl.scrollHeight - window.innerHeight); }
+    function yFor(p) { return PAD + p * (H - 2 * PAD); }
+
+    function build() {
+      H = window.innerHeight;
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      svg.setAttribute("width", W);
+      svg.setAttribute("height", H);
+      svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+      el("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", "data-track": "1" });
+
+      var d = "M " + xAt(PAD).toFixed(2) + " " + PAD;
+      for (var y = PAD + 4; y <= H - PAD; y += 4) d += " L " + xAt(y).toFixed(2) + " " + y;
+      el("path", { d: d, "class": "vine-base" });
+      grown = el("path", { d: d, "class": "vine-grown" });
+      len = grown.getTotalLength();
+      grown.style.strokeDasharray = len;
+
+      leaves = [];
+      var side = 1, i = 0;
+      for (var ly = PAD + 46; ly < H - PAD - 30; ly += 58) {
+        var g = el("g", { transform: "translate(" + xAt(ly).toFixed(2) + " " + ly + ") rotate(" + (side > 0 ? -35 : 215) + ")" });
+        var body = el("path", { d: "M0 0 C3 -3.6 8 -3.6 10 0 C8 3.6 3 3.6 0 0 Z", "class": "leaf-body" + (i % 3 === 1 ? " alt" : "") }, g);
+        leaves.push({ y: ly, body: body });
+        side *= -1; i++;
+      }
+
+      flower = el("g", { "class": "vine-flower", transform: "translate(" + xAt(H - PAD).toFixed(2) + " " + (H - PAD) + ")" });
+      var fi = el("g", { "class": "flower-inner" }, flower);
+      for (var p = 0; p < 5; p++) el("ellipse", { cx: 0, cy: -4.2, rx: 2.3, ry: 3.6, transform: "rotate(" + p * 72 + ")", "class": "petal" }, fi);
+      el("circle", { cx: 0, cy: 0, r: 1.9, "class": "flower-core" }, fi);
+
+      thumb = el("g", { "class": "vine-thumb", "data-thumb": "1" });
+      var ti = el("g", { "class": "thumb-inner" }, thumb);
+      el("path", { d: "M-10 0 C-6 -7 6 -7 10 0 C6 7 -6 7 -10 0 Z", "class": "thumb-body" }, ti);
+      el("path", { d: "M-10 0 L10 0", "class": "thumb-rib" }, ti);
+      el("path", { d: "M-3 0 L1 -3.5 M2 0 L5 -3 M-3 0 L1 3.5 M2 0 L5 3", "class": "thumb-veins" }, ti);
+
+      progress = Math.min(1, Math.max(0, window.scrollY / maxScroll()));
+      render();
+    }
+
+    function render() {
+      var y = yFor(progress);
+      grown.style.strokeDashoffset = (len * (1 - progress)).toFixed(1);
+      for (var i = 0; i < leaves.length; i++) leaves[i].body.classList.toggle("on", leaves[i].y <= y + 2);
+      flower.classList.toggle("on", progress > 0.985);
+      var rot = 90 - slopeDeg(y) + sway;
+      thumb.setAttribute("transform", "translate(" + xAt(y).toFixed(2) + " " + y.toFixed(2) + ") rotate(" + rot.toFixed(2) + ")");
+    }
+
+    function loop() {
+      var sy = window.scrollY;
+      vel = sy - lastY; lastY = sy;
+      progress = Math.min(1, Math.max(0, sy / maxScroll()));
+      var target = Math.max(-28, Math.min(28, vel * 0.5)); // leaf sways with scroll speed
+      sway += (target - sway) * 0.12;
+      render();
+      if (Math.abs(sway) > 0.05 || Math.abs(vel) > 0.1) raf = requestAnimationFrame(loop);
+      else raf = 0;
+    }
+
+    function wake() {
+      wrap.classList.add("active");
+      clearTimeout(idleT);
+      idleT = setTimeout(function () { if (!dragging) wrap.classList.remove("active"); }, 1400);
+      if (!raf) raf = requestAnimationFrame(loop);
+    }
+
+    function scrollToProgress(p, immediate) {
+      var target = Math.min(1, Math.max(0, p)) * maxScroll();
+      if (window.lenis) window.lenis.scrollTo(target, immediate ? { immediate: true } : { duration: 1.2 });
+      else window.scrollTo({ top: target, behavior: immediate ? "auto" : "smooth" });
+    }
+    function pFromEvent(e) { return (e.clientY - PAD) / (H - 2 * PAD); }
+
+    wrap.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      var onThumb = e.target.closest && e.target.closest("[data-thumb]");
+      if (onThumb) {
+        dragging = true;
+        docEl.classList.add("vine-dragging");
+        wrap.setPointerCapture(e.pointerId);
+      } else {
+        scrollToProgress(pFromEvent(e), false);
+      }
+      wake();
+    });
+    wrap.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      scrollToProgress(pFromEvent(e), true);
+      wake();
+    });
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      docEl.classList.remove("vine-dragging");
+      try { wrap.releasePointerCapture(e.pointerId); } catch (err) {}
+      wake();
+    }
+    wrap.addEventListener("pointerup", endDrag);
+    wrap.addEventListener("pointercancel", endDrag);
+
+    window.addEventListener("scroll", wake, { passive: true });
+    var rT = 0;
+    window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(build, 100); });
+    if (window.ResizeObserver) new ResizeObserver(function () { if (!raf) raf = requestAnimationFrame(loop); }).observe(document.body);
+
+    build();
+  })();
+</script>
+
+</body></html>
